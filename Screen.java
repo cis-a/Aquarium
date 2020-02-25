@@ -1,5 +1,4 @@
 
-
 public class Screen {
 
 	private int width;	
@@ -29,15 +28,7 @@ public class Screen {
 	
 	public void renderPicture (char[][] myScreen) {	
 
-		// clear screen
-//			for(int i = 0; i < myScreen.length; i++)
-//			{
-//			    System.out.println("\b");
-//			}
-
 			System.out.print("\033[H\033[2J");
-
-
 		// paint picture	
 			for (char[] level : myScreen){
 				for (char box : level) {

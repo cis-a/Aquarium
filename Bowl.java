@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bowl {
 
@@ -25,34 +26,26 @@ public class Bowl {
 	public void setDepth (int depth) {
 		this.depth = depth;
 	}
-
-	public char[][] showOutline (int width, int depth){
+	
+	public List<Fish> makeSwarm (int BOWLWIDE, int BOWLDEEP){
 		
-//		depth = this.getDepth();
-//		System.out.println(width);
-//		width = this.getWidth();
-//		System.out.println(width);
-		//char[][] aquariumArea = new char [this.getDepth() + 1][this.getWidth()+2];
-		char[][] aquariumArea = new char [depth + 1][width+2];
-		final int bottomIndex= depth;
-		final int leftIndex = 0;
-		final int rightIndex= width +1;
+		int horizPosition = BOWLWIDE -2 ;
+		int vertPosition = BOWLDEEP;
+		int [][] positions = new int [4][2];
 		
-
-//	To paint each box:
-		
-		for (int box = leftIndex+1; box < rightIndex; box ++){
-			for (int level = 0; level < bottomIndex; level++) {
-				aquariumArea[level][leftIndex]='|';
-				aquariumArea[level][box]=' ';
-				aquariumArea[level][rightIndex]='|';
-			}
+		for (int i = 0; i < positions.length; i++) {
+		horizPosition = (int) (Math.random() * (BOWLWIDE - 4));
+		vertPosition = (int) (Math.random () * (BOWLDEEP));
+		positions[i][0] = horizPosition;
+		positions[i][1] = vertPosition; 
 		}
-		aquariumArea[bottomIndex][leftIndex] = '+';
-		for (int bottom = 1; bottom <= width ; bottom++) {
-			aquariumArea[bottomIndex][bottom] = '-';
+	
+		List<Fish>swarm = new ArrayList <Fish>();
+		
+		for (int i = 0; i < positions.length; i++) {
+		swarm.add(new Fish (String.valueOf(i), positions[i]));
 		}
-		aquariumArea[bottomIndex][rightIndex] = '+';
-		return aquariumArea;
+		return swarm;
 	}
+
 }

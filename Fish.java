@@ -1,5 +1,4 @@
 
-
 public class Fish extends Marinelife {
 	
 	public Fish(String name, int[] position) {
@@ -44,7 +43,6 @@ public class Fish extends Marinelife {
 	public void reverseMove () {
 		this.setHorizSpeed(-this.getHorizSpeed());
 		}
-	
 	
 	public void setOrientation () {
 		if (this.getHorizSpeed() < 0) {
