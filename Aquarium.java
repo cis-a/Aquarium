@@ -13,21 +13,26 @@ public class Aquarium {
 		
 		char[][] myScreen = myViewport.paintBowl(myFishBowl);
 		
-		List<Fish>swarm = myFishBowl.makeSwarm(BOWLWIDE, BOWLDEEP);
+//		List<Fish>swarm = myFishBowl.makeSwarm(BOWLWIDE, BOWLDEEP);
+//		
+//		for (Fish fish : swarm) {
+//			fish.placeFish(myScreen);
+//		}
+		List<Marinelife>marinelife = myFishBowl.makeMarinelife(BOWLWIDE, BOWLDEEP);
 		
-		for (Fish fish : swarm) {
-			fish.placeFish(myScreen);
+		for (Marinelife marine : marinelife) {
+			marine.placeMarinelife(myScreen);
 		}
 	
 		myViewport.renderPicture(myScreen);
 	
 		while (true) {
 			
-			Thread.sleep(100,0);
+			Thread.sleep(150,0);
 			myScreen = myViewport.paintBowl(myFishBowl);
-			for (Fish fish : swarm) {
-				fish.move(myFishBowl);
-				fish.placeFish(myScreen);
+			for (Marinelife marine : marinelife) {
+				marine.move(myFishBowl);
+				marine.placeMarinelife(myScreen);
 			}
 
 			myViewport.renderPicture(myScreen);

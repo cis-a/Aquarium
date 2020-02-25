@@ -10,6 +10,13 @@ public abstract class Marinelife {
 		
 	public void move (Bowl bowl) {
 	}
+	
+	public char [][] placeMarinelife (char[][] area) {
+		return area;
+	}
+	
+	public void changeDepthProbability (double probability) {
+	}
 		
 	public String getName() {
 		return name;

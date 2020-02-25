@@ -31,6 +31,17 @@ public class Fish extends Marinelife {
 		this.setPosition (position);
 	}
 	
+	@Override
+	public char [][] placeMarinelife (char[][] area) {
+		
+		int [] position = this.getPosition();
+			for (int i = 0 ; i < this.getBody().length; i++) {
+			area[position[1]][position[0]+i] = this.getBody()[i]; 
+			}
+	return area;
+	}
+	
+	//probably obsolete / replaced by placeMarinelife
 	public char [][] placeFish (char[][] area) {
 		
 		int [] position = this.getPosition();
