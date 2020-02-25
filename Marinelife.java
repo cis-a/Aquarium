@@ -1,17 +1,28 @@
-package Aquarium;
+
+
+import Aquarium.*;
 
 public abstract class Marinelife {
-	
+
+
 	private String name;
 	private char[] body;
 	private int [] position;
 	private int vertSpeed;
 	private int horizSpeed;
+		
+//	public Marinelife(String name, int[] position) {
+//		this.name = name;
+//		char [] body = {'o'};
+//		this.setBody(body);
+//		this.position = position;
+//		this.setVertSpeed(0);
+//		this.setHorizSpeed(0);
+//	}
 
 	public void move (Bowl bowl) {
 	}
-	
-	
+		
 	public String getName() {
 		return name;
 	}
