@@ -1,3 +1,4 @@
+import java.util.List;
 
 public abstract class Marinelife {
 
@@ -64,7 +65,8 @@ public abstract class Marinelife {
 	public int updateWidth (Bowl bowl) {
 		int horizTip = this.getPosition()[0] + this.getBody().length;	
 		if (horizTip + this.getHorizSpeed() > bowl.getWidth()) {
-			return this.getPosition()[0] + this.getHorizSpeed() - this.getBody().length;
+			//return this.getPosition()[0] + this.getHorizSpeed() - this.getBody().length;
+			return bowl.getWidth();
 		} else if (this.getPosition()[0] + this.getHorizSpeed() < 1 ) {
 			return 1;
 		} else return this.getPosition()[0] + this.getHorizSpeed();
@@ -116,6 +118,9 @@ public abstract class Marinelife {
 
 	public void setChangeDepthProbability(double changeDepthProbability) {
 		this.changeDepthProbability = changeDepthProbability;
+	}
+
+	public void feed(List<Marinelife> marinelife, int HAIINDEX) {
 	}
 	
 }

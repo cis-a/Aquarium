@@ -53,9 +53,10 @@ public class Bowl {
 	
 		List<Marinelife>marinelife = new ArrayList <Marinelife>();
 				
-		marinelife.add(new Kooglfish ("Kooglfish" + String.valueOf(0), positions[0]));
-		marinelife.add(new Hai ("Hai" + String.valueOf(1), positions[1]));
+		marinelife.add(new Hai ("Hai" + String.valueOf(0), positions[0]));
+		marinelife.add(new Kooglfish ("Kooglfish" + String.valueOf(1), positions[1]));
 		marinelife.add(new Swordfish ("Swordfish" + String.valueOf(2), positions[2]));
+		marinelife.add(new Hippocampus ("Hippocampus" + String.valueOf(3), positions[3]));
 		for (int counter = 3; counter < LIFEFORMS; counter ++) {
 		marinelife.add(new Fish ("Fish" + String.valueOf(counter), positions[counter]));
 		}
