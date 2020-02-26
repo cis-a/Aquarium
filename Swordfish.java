@@ -1,5 +1,5 @@
 
-public class Swordfish extends Marinelife {
+public class Swordfish extends Marinelife implements Swim {
 	
 	public Swordfish(String name, int[] position) {
 		super();
@@ -15,42 +15,12 @@ public class Swordfish extends Marinelife {
 	public void move (Bowl bowl) {
 
 		changeDepthProbability(0.2);
-		int vertSpeed = this.getVertSpeed();
-		int horizSpeed = this.getHorizSpeed();
 		int [] position = {this.getPosition()[0], this.getPosition()[1]};
-		int horizTip = position[0] + this.getBody().length;	
-		
-		if (horizTip + horizSpeed > bowl.getWidth()) {
-			this.setHorizSpeed(-horizSpeed);			
-			setOrientation();
-		} else if (position[0] + horizSpeed <= 1) {
-			this.setHorizSpeed(-horizSpeed);			
-			setOrientation();
-		}
-		
-		if (position[1] + vertSpeed >= bowl.getDepth()) {
-			this.setVertSpeed(-vertSpeed);
-			position [1] = bowl.getDepth() -1 ;
-		} else if (position[1] + vertSpeed <= 0) {
-			this.setVertSpeed(-vertSpeed);
-			position [1] = 1;
-		}			
-	
-		if (horizTip + horizSpeed > bowl.getWidth()) {
-				position [0] = position[0] + horizSpeed - this.getBody().length;
-			} else if (position[0] + horizSpeed < 1 ) {
-				position [0] = 1;
-			} else { position [0]  = position[0] + horizSpeed;
-		}
-		
-		if (position[1] + vertSpeed > bowl.getDepth()) {
-			position [1] = bowl.getDepth();
-			} else if (position [1] < 0) {
-			position[1] = 0;
-			} else {
-			position [1] = position[1] + vertSpeed;
-		}
-		this.setVertSpeed(0);
+		decideOnTurn(bowl);
+		position [1] = updateDepth(bowl);
+		position [0] = updateWidth(bowl);
+
+		this.setVertSpeed(0);		
 		this.setPosition (position);
 	}
 	
@@ -64,20 +34,7 @@ public class Swordfish extends Marinelife {
 	return area;
 	}
 	
-	//probably obsolete / replaced by placeMarinelife
-	public char [][] placeFish (char[][] area) {
-		
-		int [] position = this.getPosition();
-			for (int i = 0 ; i < this.getBody().length; i++) {
-			area[position[1]][position[0]+i] = this.getBody()[i]; 
-			}
-	return area;
-	}
-
-	public void reverseMove () {
-		this.setHorizSpeed(-this.getHorizSpeed());
-		}
-	
+	@Override
 	public void setOrientation () {
 		if (this.getHorizSpeed() < 0) {
 		this.setBody(new char [] {'-', '<', '>', '<'});
@@ -95,6 +52,37 @@ public class Swordfish extends Marinelife {
 		} else if (chance >= 1 - probability) {
 			this.setVertSpeed(1);
 		}
+	}
+	
+	@Override
+	public void decideOnTurn (Bowl bowl) {
+		if (this.getPosition()[0] + this.getBody().length + this.getHorizSpeed() > bowl.getWidth()) {
+			this.setHorizSpeed(-this.getHorizSpeed());			
+			setOrientation();
+		} else if (this.getPosition()[0] + this.getHorizSpeed() <= 1) {
+			this.setHorizSpeed(-this.getHorizSpeed());			
+			setOrientation();
+		}
+	}
 		
+	@Override
+	public int updateDepth (Bowl bowl) {
+		if (this.getPosition()[1] + this.getVertSpeed() >= bowl.getDepth()) {
+			this.setVertSpeed(-this.getVertSpeed());
+			return bowl.getDepth() -1 ;
+		} else if (this.getPosition()[1] + this.getVertSpeed() <= 0) {
+			this.setVertSpeed(-this.getVertSpeed());
+			return 1;
+		} else return this.getPosition()[1] + this.getVertSpeed();
+	}
+	
+	@Override
+	public int updateWidth (Bowl bowl) {
+		int horizTip = this.getPosition()[0] + this.getBody().length;	
+		if (horizTip + this.getHorizSpeed() > bowl.getWidth()) {
+			return this.getPosition()[0] + this.getHorizSpeed() - this.getBody().length;
+		} else if (this.getPosition()[0] + this.getHorizSpeed() < 1 ) {
+			return 1;
+		} else return this.getPosition()[0] + this.getHorizSpeed();
 	}
 }

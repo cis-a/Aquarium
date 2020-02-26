@@ -1,5 +1,5 @@
 
-public class Kooglfish extends Marinelife {
+public class Kooglfish extends Marinelife implements Swim {
 	
 	public Kooglfish(String name, int[] position) {
 		super();
@@ -74,10 +74,7 @@ public class Kooglfish extends Marinelife {
 	return area;
 	}
 
-	public void reverseMove () {
-		this.setHorizSpeed(-this.getHorizSpeed());
-		}
-	
+	@Override
 	public void setOrientation () {
 		if (this.getHorizSpeed() < 0) {
 		this.setBody(new char [] {'<', '(', ')', '>', '<'});
@@ -95,6 +92,26 @@ public class Kooglfish extends Marinelife {
 		} else if (chance >= 1 - probability) {
 			this.setVertSpeed(1);
 		}
-		
+	}
+	
+	@Override
+	public int updateDepth (Bowl bowl) {
+		if (this.getPosition()[1] + this.getVertSpeed() >= bowl.getDepth()) {
+			this.setVertSpeed(-this.getVertSpeed());
+			return bowl.getDepth() -1 ;
+		} else if (this.getPosition()[1] + this.getVertSpeed() <= 0) {
+			this.setVertSpeed(-this.getVertSpeed());
+			return 1;
+		} else return this.getPosition()[1];
+	}
+	
+	@Override
+	public int updateWidth (Bowl bowl) {
+		int horizTip = this.getPosition()[0] + this.getBody().length;	
+		if (horizTip + this.getHorizSpeed() > bowl.getWidth()) {
+			return this.getPosition()[0] + this.getHorizSpeed() - this.getBody().length;
+		} else if (this.getPosition()[0] + this.getHorizSpeed() < 1 ) {
+			return 1;
+		} else return this.getPosition()[0] + this.getHorizSpeed();
 	}
 }

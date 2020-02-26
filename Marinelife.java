@@ -15,7 +15,45 @@ public abstract class Marinelife {
 		return area;
 	}
 	
-	public void changeDepthProbability (double probability) {
+	public void setOrientation () {
+	}
+	
+	public void changeDepthProbability(double probability) {
+		double chance = (Math.random() * 2) - 1; 
+		if (chance <= -1 + probability) {
+			this.setVertSpeed(-1);
+		} else if (chance >= 1 - probability) {
+			this.setVertSpeed(1);
+		}
+	}
+	
+	public void decideOnTurn (Bowl bowl) {
+		if (this.getPosition()[0] + this.getBody().length + this.getHorizSpeed() > bowl.getWidth()) {
+			this.setHorizSpeed(-this.getHorizSpeed());			
+			setOrientation();
+		} else if (this.getPosition()[0] + this.getHorizSpeed() <= 1) {
+			this.setHorizSpeed(-this.getHorizSpeed());			
+			setOrientation();
+		}
+	}
+		
+	public int updateDepth (Bowl bowl) {
+		if (this.getPosition()[1] + this.getVertSpeed() >= bowl.getDepth()) {
+			this.setVertSpeed(-this.getVertSpeed());
+			return bowl.getDepth() -1 ;
+		} else if (this.getPosition()[1] + this.getVertSpeed() <= 0) {
+			this.setVertSpeed(-this.getVertSpeed());
+			return 1;
+		} else return this.getPosition()[1] + this.getVertSpeed();
+	}
+	
+	public int updateWidth (Bowl bowl) {
+		int horizTip = this.getPosition()[0] + this.getBody().length;	
+		if (horizTip + this.getHorizSpeed() > bowl.getWidth()) {
+			return this.getPosition()[0] + this.getHorizSpeed() - this.getBody().length;
+		} else if (this.getPosition()[0] + this.getHorizSpeed() < 1 ) {
+			return 1;
+		} else return this.getPosition()[0] + this.getHorizSpeed();
 	}
 		
 	public String getName() {
@@ -56,6 +94,6 @@ public abstract class Marinelife {
 
 	public void setVertSpeed(int vertSpeed) {
 		this.vertSpeed = vertSpeed;
-	}; 
+	}
 	
 }
