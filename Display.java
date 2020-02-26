@@ -1,10 +1,10 @@
 
-public class Screen {
+public class Display {
 
 	private int width;	
 	private int depth;
 	
-	public Screen (int width, int depth) {
+	public Display (int width, int depth) {
 		 this.width = width;
 		 this.depth = depth;
 		}
@@ -27,7 +27,8 @@ public class Screen {
 	}
 	
 	public void renderPicture (char[][] myScreen) {	
-
+		
+		// clear screen
 			System.out.print("\033[H\033[2J");
 		// paint picture	
 			for (char[] level : myScreen){
@@ -44,23 +45,23 @@ public class Screen {
 		int width = bowl.getWidth();
 
 		char[][] aquariumArea = new char [depth + 1][width+2];
-		final int bottomIndex= depth;
-		final int leftIndex = 0;
-		final int rightIndex= width +1;
+		final int BOTTOMINDEX= depth;
+		final int LEFTINDEX = 0;
+		final int RIGHTINDEX= width +1;
 		
 //	To paint each box:
-		for (int box = leftIndex+1; box < rightIndex; box ++){
-			for (int level = 0; level < bottomIndex; level++) {
-				aquariumArea[level][leftIndex]='|';
+		for (int box = LEFTINDEX+1; box < RIGHTINDEX; box ++){
+			for (int level = 0; level < BOTTOMINDEX; level++) {
+				aquariumArea[level][LEFTINDEX]='|';
 				aquariumArea[level][box]=' ';
-				aquariumArea[level][rightIndex]='|';
+				aquariumArea[level][RIGHTINDEX]='|';
 			}
 		}
-		aquariumArea[bottomIndex][leftIndex] = '+';
+		aquariumArea[BOTTOMINDEX][LEFTINDEX] = '+';
 		for (int bottom = 1; bottom <= width ; bottom++) {
-			aquariumArea[bottomIndex][bottom] = '-';
+			aquariumArea[BOTTOMINDEX][bottom] = '-';
 		}
-		aquariumArea[bottomIndex][rightIndex] = '+';
+		aquariumArea[BOTTOMINDEX][RIGHTINDEX] = '+';
 		return aquariumArea;
 	}
 	

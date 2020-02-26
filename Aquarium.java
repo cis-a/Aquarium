@@ -9,26 +9,28 @@ public class Aquarium {
 		final int LIFEFORMS = 7;
 		
 		Bowl myFishBowl = new Bowl (BOWLWIDE, BOWLDEEP);
-		Screen myViewport = new Screen(BOWLWIDE+2, BOWLDEEP+1);
+		Display myDisplay = new Display(BOWLWIDE+2, BOWLDEEP+1);
 		
-		char[][] myScreen = myViewport.paintBowl(myFishBowl);
+		char[][] myPicture = myDisplay.paintBowl(myFishBowl);
 		
 		List<Marinelife>marinelife = myFishBowl.makeMarinelife(BOWLWIDE, BOWLDEEP, LIFEFORMS);
 		
 		for (Marinelife marine : marinelife) {
-			marine.placeMarinelife(myScreen);
+			marine.placeMarinelife(myPicture);
 		}
 	
-		myViewport.renderPicture(myScreen);
+		myDisplay.renderPicture(myPicture);
 	
 		while (true) {
 			Thread.sleep(150,0);
-			myScreen = myViewport.paintBowl(myFishBowl);
+			myPicture = myDisplay.paintBowl(myFishBowl);
 			for (Marinelife marine : marinelife) {
 				marine.move(myFishBowl);
-				marine.placeMarinelife(myScreen);
+				// Wenn Hai und anderer Fisch an gleicher Position sind + gleiche Bewegungsrichtung, dann nimm den anderen Fisch aus der Liste
+				
+				marine.placeMarinelife(myPicture);
 			}
-			myViewport.renderPicture(myScreen);
+			myDisplay.renderPicture(myPicture);
 		}
 	}
 }

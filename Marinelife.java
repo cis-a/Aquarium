@@ -7,18 +7,32 @@ public abstract class Marinelife {
 	private int [] position;
 	private int vertSpeed;
 	private int horizSpeed;
+	private double changeDepthProbability;
 		
-	public void move (Bowl bowl) {
-	}
-	
-	public char [][] placeMarinelife (char[][] area) {
-		return area;
-	}
-	
 	public void setOrientation () {
 	}
 	
-	public void changeDepthProbability(double probability) {
+	public void move (Bowl bowl) {
+
+		changeDepth (this.getChangeDepthProbability());
+		int [] position = {this.getPosition()[0], this.getPosition()[1]};
+		decideOnTurn(bowl);
+		position [1] = updateDepth(bowl);
+		position [0] = updateWidth(bowl);
+
+		this.setVertSpeed(0);		
+		this.setPosition (position);
+	}
+	
+	public char [][] placeMarinelife (char[][] area) {
+		int [] position = this.getPosition();
+			for (int i = 0 ; i < this.getBody().length; i++) {
+			area[position[1]][position[0]+i] = this.getBody()[i]; 
+			}
+	return area;
+	}
+	
+	public void changeDepth(double probability) {
 		double chance = (Math.random() * 2) - 1; 
 		if (chance <= -1 + probability) {
 			this.setVertSpeed(-1);
@@ -55,7 +69,7 @@ public abstract class Marinelife {
 			return 1;
 		} else return this.getPosition()[0] + this.getHorizSpeed();
 	}
-		
+
 	public String getName() {
 		return name;
 	}
@@ -94,6 +108,14 @@ public abstract class Marinelife {
 
 	public void setVertSpeed(int vertSpeed) {
 		this.vertSpeed = vertSpeed;
+	}
+
+	public double getChangeDepthProbability() {
+		return changeDepthProbability;
+	}
+
+	public void setChangeDepthProbability(double changeDepthProbability) {
+		this.changeDepthProbability = changeDepthProbability;
 	}
 	
 }

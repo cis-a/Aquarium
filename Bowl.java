@@ -53,30 +53,13 @@ public class Bowl {
 	
 		List<Marinelife>marinelife = new ArrayList <Marinelife>();
 				
-		marinelife.add(new Kooglfish (String.valueOf(0), positions[0]));
-		marinelife.add(new Hai (String.valueOf(1), positions[1]));
-		marinelife.add(new Swordfish (String.valueOf(2), positions[2]));
+		marinelife.add(new Kooglfish ("Kooglfish" + String.valueOf(0), positions[0]));
+		marinelife.add(new Hai ("Hai" + String.valueOf(1), positions[1]));
+		marinelife.add(new Swordfish ("Swordfish" + String.valueOf(2), positions[2]));
 		for (int counter = 3; counter < LIFEFORMS; counter ++) {
-		marinelife.add(new Fish (String.valueOf(counter), positions[counter]));
+		marinelife.add(new Fish ("Fish" + String.valueOf(counter), positions[counter]));
 		}
 		return marinelife;
 	}
-	
-	//currently not used - belongs to Version 1 of Aquarium Challenge
-	public List<Fish> makeSwarm (int BOWLWIDE, int BOWLDEEP, int LIFEFORMS){
-		
-		int horizPosition = BOWLWIDE -2 ;
-		int vertPosition = BOWLDEEP;
-		int [][] positions = new int [LIFEFORMS][2];
 
-		positions = randomStartPositions (BOWLWIDE, BOWLDEEP, LIFEFORMS);
-	
-		List<Fish>swarm = new ArrayList <Fish>();
-		
-		for (int i = 0; i < LIFEFORMS; i++) {
-		swarm.add(new Fish (String.valueOf(i), positions[i]));
-		}
-		return swarm;
-	}
-	
 }
