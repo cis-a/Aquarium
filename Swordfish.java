@@ -6,7 +6,12 @@ public class Swordfish extends Marinelife implements Looks {
 		this.setName(name);
 		this.setPosition(position);
 		this.setVertSpeed(0);
-		this.setHorizSpeed(-2);
+		int	randomDirection = (int)((Math.random()-1)*2);
+		if (randomDirection < 0 ) { 
+			this.setHorizSpeed(-2); 
+			} else {
+			this.setHorizSpeed(2);
+			}
 		this.setChangeDepthProbability(0.2);
 		setOrientation();
 	}

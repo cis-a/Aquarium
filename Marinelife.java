@@ -16,9 +16,9 @@ public abstract class Marinelife {
 	public void move (Bowl bowl) {
 		changeDepth (this.getChangeDepthProbability());
 		int [] position = {this.getPosition()[0], this.getPosition()[1]};
-		decideOnTurn(bowl);
 		position [1] = updateDepth(bowl);
 		position [0] = updateWidth(bowl);
+		decideOnTurn(bowl);
 		this.setVertSpeed(0);		
 		this.setPosition (position);
 	}
@@ -44,7 +44,7 @@ public abstract class Marinelife {
 		if (this.getPosition()[0] + this.getBody().length + this.getHorizSpeed() > bowl.getWidth()) {
 			this.setHorizSpeed(-this.getHorizSpeed());			
 			setOrientation();
-		} else if (this.getPosition()[0] + this.getHorizSpeed() <= 1) {
+		} else if (this.getPosition()[0] + this.getHorizSpeed() < 1) {
 			this.setHorizSpeed(-this.getHorizSpeed());			
 			setOrientation();
 		}
@@ -63,8 +63,7 @@ public abstract class Marinelife {
 	public int updateWidth (Bowl bowl) {
 		int horizTip = this.getPosition()[0] + this.getBody().length;	
 		if (horizTip + this.getHorizSpeed() > bowl.getWidth()) {
-			//return this.getPosition()[0] + this.getHorizSpeed() - this.getBody().length;
-			return bowl.getWidth();
+			return bowl.getWidth()-this.getBody().length + 1 ;
 		} else if (this.getPosition()[0] + this.getHorizSpeed() < 1 ) {
 			return 1;
 		} else return this.getPosition()[0] + this.getHorizSpeed();

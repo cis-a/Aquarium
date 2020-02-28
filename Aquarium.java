@@ -23,7 +23,7 @@ public class Aquarium {
 	
 		myDisplay.renderPicture(myPicture);
 	
-		while (marinelife.get(HAIINDEX).getFeedCounter() < LIFEFORMS) {
+		while (marinelife.size() > 1) {
 			Thread.sleep(150,0);
 			myPicture = myDisplay.paintBowl(myFishBowl);
 			for (Marinelife marine : marinelife) {

@@ -7,7 +7,12 @@ public class Hai extends Marinelife implements Looks {
 		this.setName(name);
 		this.setPosition(position);
 		this.setVertSpeed(0);
-		this.setHorizSpeed(-3);
+		int	randomDirection = (int)((Math.random()-1)*2);
+			if (randomDirection < 0 ) { 
+				this.setHorizSpeed(-3); 
+				} else {
+				this.setHorizSpeed(3);
+				}
 		this.setChangeDepthProbability(0.25);
 		this.setFeedCounter(0);
 		setOrientation();
