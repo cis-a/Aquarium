@@ -37,7 +37,7 @@ public class Display {
 				}
 				System.out.print('\n');
 			}
-		}
+	}
 	
 	public char[][] paintBowl (Bowl bowl){
 	

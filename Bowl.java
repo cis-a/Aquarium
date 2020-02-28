@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+//import Aquarium.Fish;
 
 public class Bowl {
 
@@ -45,8 +46,6 @@ public class Bowl {
 	
 	public List<Marinelife> makeMarinelife (int BOWLWIDE, int BOWLDEEP, int LIFEFORMS){
 		
-		int horizPosition = BOWLWIDE -2 ;
-		int vertPosition = BOWLDEEP;
 		int [][] positions = new int [LIFEFORMS][2];
 		
 		positions = randomStartPositions (BOWLWIDE, BOWLDEEP, LIFEFORMS);

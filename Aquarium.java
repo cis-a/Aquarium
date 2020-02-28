@@ -10,7 +10,6 @@ public class Aquarium {
 		final int LIFEFORMS = 8;
 		final int HAIINDEX = 0;
 		
-		
 		Bowl myFishBowl = new Bowl (BOWLWIDE, BOWLDEEP);
 		Display myDisplay = new Display(BOWLWIDE+2, BOWLDEEP+1);
 		
@@ -24,7 +23,7 @@ public class Aquarium {
 	
 		myDisplay.renderPicture(myPicture);
 	
-		while (true) {
+		while (marinelife.get(HAIINDEX).getFeedCounter() < LIFEFORMS) {
 			Thread.sleep(150,0);
 			myPicture = myDisplay.paintBowl(myFishBowl);
 			for (Marinelife marine : marinelife) {
@@ -35,6 +34,7 @@ public class Aquarium {
 			marine.placeMarinelife(myPicture);
 			}
 			myDisplay.renderPicture(myPicture);
+			System.out.println("Hai feeding score: "  + marinelife.get(HAIINDEX).getFeedCounter() );
 		}
 	}
 }

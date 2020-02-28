@@ -2,25 +2,23 @@ import java.util.List;
 
 public abstract class Marinelife {
 
-
 	private String name;
 	private char[] body;
 	private int [] position;
 	private int vertSpeed;
 	private int horizSpeed;
 	private double changeDepthProbability;
+	private int feedCounter;
 		
 	public void setOrientation () {
 	}
 	
 	public void move (Bowl bowl) {
-
 		changeDepth (this.getChangeDepthProbability());
 		int [] position = {this.getPosition()[0], this.getPosition()[1]};
 		decideOnTurn(bowl);
 		position [1] = updateDepth(bowl);
 		position [0] = updateWidth(bowl);
-
 		this.setVertSpeed(0);		
 		this.setPosition (position);
 	}
@@ -72,6 +70,9 @@ public abstract class Marinelife {
 		} else return this.getPosition()[0] + this.getHorizSpeed();
 	}
 
+	public void feed(List<Marinelife> marinelife, int HAIINDEX) {
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -120,7 +121,12 @@ public abstract class Marinelife {
 		this.changeDepthProbability = changeDepthProbability;
 	}
 
-	public void feed(List<Marinelife> marinelife, int HAIINDEX) {
+	public void setFeedCounter(int feedCounter) {
+		this.feedCounter = feedCounter;		
+	}
+	
+	public int getFeedCounter() {
+		return feedCounter;
 	}
 	
 }
